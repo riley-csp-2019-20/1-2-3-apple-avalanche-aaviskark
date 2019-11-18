@@ -35,7 +35,6 @@ def drop_apple():
   wn.tracer(True)
   apple.goto(apple.xcor(), ground_height)
   apple.clear()
-  apple.ht()
   wn.tracer(False)
   reset_apple(apple)
 
