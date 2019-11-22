@@ -18,25 +18,33 @@ wn.bgpic("tree.gif")
 screen_width=400
 screen_height=400
 
-apple = trtl.Turtle()
-apple.up()
 font_setup = ("Arial", 74, "bold")
 wn.tracer(False)
-alphabet= ["a","b","c","d","e","f","g","h","i","j","k","L","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+alphabet= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 letter_choice = rand.choice(alphabet)
+current_letter= "a"
+
+current_letters= []
+apple_list= []
+number_of_apples= 5
+
 # given a turtle, set that turtle to be shaped by the image file
+
 def draw_apple(active_apple, letter):
   active_apple.shape(apple_image)
-  draw_letter(letter_choice, active_apple)
+  draw_letter(letter, active_apple)
   wn.update()
 
-apple.up()
-def drop_apple():
+def drop_apple(letter):
   wn.tracer(True)
-  apple.goto(apple.xcor(), ground_height)
-  apple.clear()
+  index = current_letters.index(letter)
+  current_letters.pop(index)
+  active_apple = apple_list.pop(index) 
+  active_apple.goto(active_apple.xcor(), ground_height)
+  active_apple.clear()
   wn.tracer(False)
-  reset_apple(apple)
+  reset_apple(active_apple)
+  apple_list.append(active_apple)
 
 def draw_letter(letter, active_apple):
   active_apple.color("white")
@@ -46,44 +54,130 @@ def draw_letter(letter, active_apple):
   active_apple.setpos(remember_position)
 
 def reset_apple(active_apple):
+  global current_letter
   length_of_list= len(alphabet)
   if(length_of_list != 0):
     index= rand.randint(0, length_of_list)
+    current_letter= alphabet.pop(index)
     active_apple.goto(rand.randint(-(screen_width)/2, (screen_width)/2), rand.randint(-(screen_height)/2, (screen_height/2)))
-    draw_apple(active_apple, alphabet.pop(index))
+    draw_apple(active_apple,current_letter)
+    current_letters.append(current_letter)
+
+for i in range(number_of_apples):
+  active_apple= trtl.Turtle(shape = apple_image)
+  active_apple.penup()
+  reset_apple(active_apple)
+  apple_list.append(active_apple)
 
 
-#TODO Create a function that takes a turtle as its parameter and gives that turtle (apple)
-# a new location on the tree, only if the list of letters is not empty. 
+def check_letter_A():
+  if ("a" in current_letters):
+    drop_apple("a")
+def check_letter_B():
+  if ("b" in current_letters):
+    drop_apple("b")
+def check_letter_C():
+  if ("c" in current_letters):
+    drop_apple("c")
+def check_letter_D():
+  if ("d" in current_letters):
+    drop_apple("d")
+def check_letter_E():
+  if ("e" in current_letters):
+    drop_apple("e")
+def check_letter_F():
+  if ("f" in current_letters):
+    drop_apple("f")
+def check_letter_G():
+  if ("g" in current_letters):
+    drop_apple("g")
+def check_letter_H():
+  if ("h" in current_letters):
+    drop_apple("h")
+def check_letter_I():
+  if ("i" in current_letters):
+    drop_apple("i")
+def check_letter_J():
+  if ("j" in current_letters):
+    drop_apple("j")
+def check_letter_K():
+  if ("k" in current_letters):
+    drop_apple("k")
+def check_letter_L():
+  if ("l"in current_letters):
+    drop_apple("l")
+def check_letter_M():
+  if ("m" in current_letters):
+    drop_apple("m")
+def check_letter_N():
+  if ("n" in current_letters):
+    drop_apple("n")
+def check_letter_O():
+  if ("o" in current_letters):
+    drop_apple("o")
+def check_letter_P():
+  if ("o" in current_letters):
+    drop_apple("o")
+def check_letter_Q():
+  if ("q" in current_letters):
+    drop_apple("q")
+def check_letter_R():
+  if ("r" in current_letters):
+    drop_apple()
+def check_letter_S():
+  if ("s" in current_letters):
+    drop_apple("s")
+def check_letter_T():
+  if ("t" in current_letters):
+    drop_apple("t")
+def check_letter_U():
+  if ("u" in current_letters):
+    drop_apple("u")
+def check_letter_V():
+  if ("v" in current_letters):
+    drop_apple("v")
+def check_letter_W():
+  if ("w" in current_letters):
+    drop_apple("w")
+def check_letter_X():
+  if ("x" in current_letters):
+    drop_apple("x")
+def check_letter_Y():
+  if ("y" in current_letters):
+    drop_apple("y")
+def check_letter_Z():
+  if ("z" in current_letters):
+    drop_apple("z")
 
-#TODO Create a function that draws a new letter from the letter list.
 
-#TODO Create a function that takes a turtle (apple) as its parameter
-# and set that turtle to be shaped by the image file, call the letter drawing function,
-# and update the Screen
 
-#TODO Iterate over the numbers from 0 to the number of apples, creating that many turtles
-# calling your function that resets the apples by giving them a new random location
-# add the new apples to a list of apples to be used in the rest of the program.
-# The loop below executes the correct number of times by using the range() function
-# to create a list of numbers to iterate over.
-'''for i in range(0, number_of_apples)'''
-  #Your code here
+wn.onkeypress(check_letter_A, "a")
+wn.onkeypress(check_letter_B, "b")
+wn.onkeypress(check_letter_C, "c")
+wn.onkeypress(check_letter_D, "d")
+wn.onkeypress(check_letter_E, "e")
+wn.onkeypress(check_letter_F, "f")
+wn.onkeypress(check_letter_G, "g")
+wn.onkeypress(check_letter_H, "h")
+wn.onkeypress(check_letter_I, "i")
+wn.onkeypress(check_letter_J, "j")
+wn.onkeypress(check_letter_K, "k")
+wn.onkeypress(check_letter_L, "l")
+wn.onkeypress(check_letter_M, "m")
+wn.onkeypress(check_letter_N, "n")
+wn.onkeypress(check_letter_O, "o")
+wn.onkeypress(check_letter_P, "p")
+wn.onkeypress(check_letter_Q, "q")
+wn.onkeypress(check_letter_R, "r")
+wn.onkeypress(check_letter_S, "s")
+wn.onkeypress(check_letter_T, "t")
+wn.onkeypress(check_letter_U, "u")
+wn.onkeypress(check_letter_V, "v")
+wn.onkeypress(check_letter_W, "w")
+wn.onkeypress(check_letter_X, "x")
+wn.onkeypress(check_letter_Y, "y")
+wn.onkeypress(check_letter_Z, "z")
 
-#TODO Create a function that takes a letter as its parameter, retrieve a
-# random turtle (apple) and causes the turtle (apple) to drop from the tree and the letter 
-# to disappear. Call the apple reseting function.
-
-#TODO define a function per letter that you will use in your program. Each function should check
-# to see if the given letter is in the list of letters; if it is, it should drop an apple at random.
-
-#TODO use the onkeypress method of wn to correlate the functions you defined above with each
-# of the letters that the user might type.
-# onkeypress requires that you name one function that must take
-# no arguments to be called when the specified key is pressed.
-
-draw_apple(apple, "a")
-wn.onkeypress(drop_apple, letter_choice)
 wn.listen()
 
 trtl.mainloop()
